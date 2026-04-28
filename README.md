@@ -1,6 +1,6 @@
 <h1>ExpNo 2 : Implement Depth First Search Traversal of a Graph</h1> 
-<h3>Name: </h3>
-<h3>Register Number:     </h3>
+<h3>Name: Swetha A</h3>
+<h3>Register Number: 212224060272   </h3>
 <H3>Aim:</H3>
 <p> To Implement Depth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -45,6 +45,8 @@ Visit node 3
 
 Now, the Stack becomes empty, which means we have visited all the nodes, and our DFS traversal ends.
 
+
+
 <h3>Algorithm:</h3>
 <B><ol>
  <li>Construct a Graph with Nodes and Edges</li>
@@ -55,6 +57,60 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
 </ol></B>
 
 <hr>
+
+## Program:
+```
+# DFS using Stack (Iterative) - Input Format Based
+
+def dfs(graph, start):
+    visited = set()
+    stack = [start]
+    result = []
+
+    while stack:
+        node = stack.pop()
+        if node not in visited:
+            visited.add(node)
+            result.append(node)
+
+            # Add neighbors in reverse order to maintain correct DFS order
+            for neighbor in reversed(graph[node]):
+                if neighbor not in visited:
+                    stack.append(neighbor)
+
+    return result
+
+
+# -------------------------
+# MAIN PROGRAM
+# -------------------------
+
+# Read number of nodes and edges
+n, e = map(int, input().split())
+
+graph = {}
+
+# Build graph dictionary
+for _ in range(e):
+    u, v = input().split()
+
+    if u not in graph:
+        graph[u] = []
+    if v not in graph:
+        graph[v] = []
+
+    graph[u].append(v)
+    # If undirected graph, also add reverse
+    # graph[v].append(u)
+
+# Choose starting node (first node in graph)
+start_node = list(graph.keys())[0]
+
+# Perform DFS
+output = dfs(graph, start_node)
+print(output)
+```
+
 <h3>Sample Input</h3>
 <hr>
 8 9 <BR>
@@ -89,7 +145,10 @@ F H <BR>
 ['0', '1', '2', '3', '4']
 
 <hr>
+
+## Output:
+ <img width="1890" height="747" alt="image" src="https://github.com/user-attachments/assets/41624084-14b3-420c-bd1b-896190037bfe" />
+
 <h3>Result:</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Depth First Search for the same graph was done successfully.</p>
-
